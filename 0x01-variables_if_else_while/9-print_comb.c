@@ -6,9 +6,9 @@
  */
 int main(void)
 {
-	putchar('0')
+	putchar('0');
 
-		for (int i = 1; i < 10; i++)
+	for (int i = 1; i < 10; i++)
 		{
 			putchar(',');
 			putchar(' ');
