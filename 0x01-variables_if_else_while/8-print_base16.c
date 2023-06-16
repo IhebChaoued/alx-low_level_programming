@@ -16,11 +16,9 @@ int main(void)
 		}
 		else
 		{
-			putchar('a' + (i-10));
+			putchar( 'a' + (i-10));
 		}
 	}
-	
 	putchar('\n');
-	
 	return (0);
 }
