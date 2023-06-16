@@ -10,7 +10,7 @@ int main(void)
 
 	for (int i = a + 25; i >= a; i++)
 	{
-		putchar(i)
+		putchar(i);
 	}
 
 	putchar('\n');
