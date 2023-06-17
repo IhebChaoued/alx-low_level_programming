@@ -20,7 +20,7 @@ int main(void)
 				putchar(' ');
 				putchar((j / 10) + 48);
 				putchar((j % 10) + 48);
-				if (i != 98 || j !=99)
+				if (i != 98 || j != 99)
 				{
 					putchar(',');
 					putchar(' ');
@@ -30,5 +30,5 @@ int main(void)
 	}
 
 	putchar('\n');
-	return(0);
+	return (0);
 }
