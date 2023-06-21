@@ -1,28 +1,29 @@
 #include <stdio.h>
 
-int main() {
-	unsigned long prev = 1;
-	unsigned long current = 2;
-	int count = 2;
+void printFibonacciSequence(int n) {
+	unsigned long long prev = 1;
+	unsigned long long current = 2;
 
-	printf("%lu, %lu, ", prev, current);
+	printf("%llu, %llu, ", prev, current);
 
-	while (count < 98) {
-		unsigned long next = prev + current;
-		count++;
+	for (int i = 3; i <= n; i++) {
+		unsigned long long next = prev + current;
 
-		printf("%lu", next);
-
-		if (count < 98) {
-			printf(", ");
+		if (i < n) {
+			printf("%llu, ", next);
+		} else {
+			printf("%llu\n", next);
 		}
 
 		prev = current;
 		current = next;
 	}
-
-	printf("\n");
-
-	return 0;
 }
 
+int main() {
+	int n = 98;  // Number of Fibonacci numbers to generate
+
+	printFibonacciSequence(n);
+
+	return (0);
+}
