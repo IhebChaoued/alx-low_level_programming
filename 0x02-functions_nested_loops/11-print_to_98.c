@@ -1,40 +1,29 @@
 #include <stdio.h>
-
+/**
+ * Function to print all numbers from the given number to 98.
+ * @param n The starting number.
+ */
 void print_to_98(int n)
 {
-	int i;
-	if (n <= 98)
+	for (; n <= 98; n++)
 	{
-		for (i = n; i <= 98; i++)
+		if (n != 98)
 		{
-			printf("%d", i);
-
-			if (i != 98)
-			{
-				printf(", ");
-			}
+			printf("%d, ", n);
+		}
+		else
+		{
+			printf("%d\n", n);
 		}
 	}
-	else
-	{
-		for (i = n; i >= 98; i--)
-		{
-			printf("%d", n);
-			if (i != 98)
-			{
-				printf(", ");
-			}
-		}
-	}
-	print("\n");
 }
 
 int main()
 {
-	int number;
-	printf("Enter a number: ");
-	scanf("%d", &number);
-	print_to_98(number);
+	int start_num;
+	printf("Enter starting num: ");
+	scanf("%d", &start_num);
+	print_to_98(start_num);
 
 	return (0);
 }
