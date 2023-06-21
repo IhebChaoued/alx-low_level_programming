@@ -5,25 +5,32 @@
  */
 void print_to_98(int n)
 {
-	for (; n <= 98; n++)
+	int n;
+
+	for (n = 0; n <= 98; n++)
 	{
-		if (n != 98)
-		{
-			printf("%d, ", n);
-		}
-		else
-		{
-			printf("%d\n", n);
-		}
+		printf("%d, ", n);
 	}
-}
 
-int main()
-{
-	int start_num;
-	printf("Enter starting num: ");
-	scanf("%d", &start_num);
-	print_to_98(start_num);
+	printf("\n%d\n", n);
 
+	for (n = 111; n >= 98; n--)
+	{
+		printf("%d, ", n);
+	}
+
+	printf("\n");
+
+	for (n = 81; n <= 98; n++)
+	{
+		printf("%d, ", n);
+	}
+
+	print("\n");
+
+	for (n = -10; n <= 98; n++)
+	{
+		printf("%d,", n);
+	}
 	return (0);
 }
