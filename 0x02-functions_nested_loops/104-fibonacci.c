@@ -1,17 +1,17 @@
 #include <stdio.h>
 
 int main() {
-	long long prev = 1;
-	long long current = 2;
+	unsigned long prev = 1;
+	unsigned long current = 2;
 	int count = 2;
 
-	printf("%lld, %lld, ", prev, current);
+	printf("%lu, %lu, ", prev, current);
 
 	while (count < 98) {
-		long long next = prev + current;
+		unsigned long next = prev + current;
 		count++;
 
-		printf("%lld", next);
+		printf("%lu", next);
 
 		if (count < 98) {
 			printf(", ");
