@@ -7,15 +7,11 @@
  *
  * Return: 1 if c is a digit, return 0 otherwise
  */
-int_isdigit(int c)
+int _isdigit(int c)
 {
 	if (isdigit(c))
-	{
 		return (1);
-	}
 
 	else
-	{
 		return (0);
-	}
 }
