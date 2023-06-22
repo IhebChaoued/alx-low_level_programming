@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 /**
  * main - Prints numbers from 1 to 100 with special conditions.
@@ -11,7 +10,7 @@
 int main(void)
 {
 	int i;
-
+	
 	for (i = 1; i <= 100; i++)
 	{
 		if (i % 3 == 0 && i % 5 == 0)
