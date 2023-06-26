@@ -1,3 +1,4 @@
+#include <string.h>
 #include "main.h"
 /**
  * _strcpy - Copy a string from src to dest.
