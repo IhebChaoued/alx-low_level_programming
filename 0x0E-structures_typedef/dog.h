@@ -1,5 +1,5 @@
-#ifndef DOG_H
-#define DOG_H
+#ifndef _DOG_H_
+#define _DOG_H_
 /**
  * struct dog - Represents information about a dog
  * @name: The name of the dog
@@ -13,4 +13,4 @@ struct dog
 	char *owner
 };
 
-#endif
+#endif /* _DOG_H_ */
