@@ -10,13 +10,13 @@
 int sum_them_all(const unsigned int n, ...)
 {
 	int x = 0, y = n;
-	va_list p;
+	va_list ap;
 
 	if (!n)
 		return (0);
-	va_start(p, n);
+	va_start(ap, n);
 	while (i--)
 		s += va_arg(p, int);
-	va_end(p);
+	va_end(ap);
 	return (x);
 }
