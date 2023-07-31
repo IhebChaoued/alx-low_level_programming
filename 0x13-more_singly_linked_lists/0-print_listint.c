@@ -15,5 +15,5 @@ size_t print_listint(const listint_t *h)
 	head->data = 8;
 	head->link = NULL;
 
-	printf("%d", head->data, head->link);
+	printf("%d, %d", head->data, head->link);
 }
