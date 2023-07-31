@@ -8,12 +8,14 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	struct listint_t *head = NULL;
+	const listint_t *current = h;
+	size_t count = 0;
 
-	head = (struct listint_t *)malloc(sizeof(struct listint_t));
-
-	head->data = 8;
-	head->link = NULL;
-
-	printf("%d, %d", head->data, head->link);
+	while (current != NULL)
+	{
+		printf("%d", current->data);
+		count++;
+		current = current->next;
+	}
+	return (count);
 }
