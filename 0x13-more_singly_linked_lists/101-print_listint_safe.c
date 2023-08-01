@@ -1,4 +1,6 @@
 #include "lists.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * _r - reallocates memory for an array of pointers
@@ -11,20 +13,20 @@
  */
 const listint_t **_r(const listint_t **list, size_t size, const listint_t *new)
 {
-    const listint_t **newlist;
-    size_t count;
+	const listint_t **newlist;
+	size_t count;
 
-    newlist = malloc(size * sizeof(listint_t *));
-    if (newlist == NULL)
-    {
-        free(list);
-        exit(98);
-    }
-    for (count = 0; count < size - 1; count++)
-        newlist[count] = list[count];
-    newlist[count] = new;
-    free(list);
-    return (newlist);
+	newlist = malloc(size * sizeof(listint_t *));
+	if (newlist == NULL)
+	{
+		free(list);
+		exit(98);
+	}
+	for (count = 0; count < size - 1; count++)
+		newlist[count] = list[count];
+	newlist[count] = new;
+	free(list);
+	return (newlist);
 }
 
 /**
@@ -35,25 +37,25 @@ const listint_t **_r(const listint_t **list, size_t size, const listint_t *new)
  */
 size_t print_listint_safe(const listint_t *head)
 {
-    size_t count, num = 0;
-    const listint_t **list = NULL;
+	size_t count, num = 0;
+	const listint_t **list = NULL;
 
-    while (head != NULL)
-    {
-        for (count = 0; count < num; count++)
-        {
-            if (head == list[count])
-            {
-                printf("-> [%p] %d\n", (void *)head, head->n);
-                free(list);
-                return (num);
-            }
-        }
-        num++;
-        list = _r(list, num, head);
-        printf("[%p] %d\n", (void *)head, head->n);
-        head = head->next;
-    }
-    free(list);
-    return (num);
+	while (head != NULL)
+	{
+		for (count = 0; count < num; count++)
+		{
+			if (head == list[count])
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free(list);
+				return (num);
+			}
+		}
+		num++;
+		list = _r(list, num, head);
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
+	}
+	free(list);
+	return (num);
 }
