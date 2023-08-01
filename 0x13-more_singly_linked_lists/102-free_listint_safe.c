@@ -21,7 +21,7 @@ listint_t **_ra(listint_t **list, size_t size, listint_t *new)
 		exit(98);
 	}
 	for (count = 0; count < size - 1; count++)
-		newlist[i] = list[i];
+		newlist[count] = list[count];
 	newlist[count] = new;
 	free(list);
 	return (newlist);
