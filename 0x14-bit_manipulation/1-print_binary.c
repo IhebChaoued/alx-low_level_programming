@@ -1,30 +1,46 @@
 #include "main.h"
-
 /**
- * print_binary - Prints the binary representation of a number.
- * @n: The number to be converted and printed.
+ * _power - calculate (base and power)
+ * @base: base of the exponet
+ * @pow: power of the exponet
+ * Return: value of base and power
+ */
+unsigned long int _power(unsigned int base, unsigned int pow)
+{
+	unsigned long int result;
+	unsigned int count;
+
+	result = 1;
+	for (count = 1; count <= pow; count++)
+		result *= base;
+	return (result);
+}
+/**
+ * print_binary - prints the binary representation of a number
+ * @n: num of prented
+ * Return: void
  */
 void print_binary(unsigned long int n)
 {
-	int bit_position = (sizeof(unsigned long int) * 8) - 1;
-	unsigned long int mask = 1UL << bit_position;
-	int flag = 0;
+	unsigned long int num, final;
+	char a;
 
-	while (bit_position >= 0)
+	a = 0;
+	num = _power(2, sizeof(unsigned long int) * 8 - 1);
+
+	while (num != 0)
 	{
-		if (n & mask)
+		final = n & num;
+		if (final == num)
 		{
-			flag = 1;
+			a = 1;
 			_putchar('1');
+
 		}
-		else if (flag)
+		else if (a == 1 || num == 1)
 		{
 			_putchar('0');
 		}
-
-		bit_position--;
+		num >>= 1;
 	}
-
-	if (!flag)
-		_putchar('0');
 }
