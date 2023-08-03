@@ -6,16 +6,11 @@
  */
 void print_binary(unsigned long int n)
 {
-	if (n == 0)
-	{
-		_putchar('0');
-		return;
-	}
-
-	unsigned long int mask = 1UL << ((sizeof(unsigned long int) * 8) - 1);
+	int bit_position = (sizeof(unsigned long int) * 8) - 1;
+	unsigned long int mask = 1UL << bit_position;
 	int flag = 0;
 
-	while (mask)
+	while (bit_position >= 0)
 	{
 		if (n & mask)
 		{
@@ -26,6 +21,10 @@ void print_binary(unsigned long int n)
 		{
 			_putchar('0');
 		}
-		mask >>= 1;
+
+		bit_position--;
 	}
+
+	if (!flag)
+		_putchar('0');
 }
