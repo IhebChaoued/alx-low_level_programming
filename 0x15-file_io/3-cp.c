@@ -8,7 +8,7 @@
  */
 void print_error_and_exit(int exit_code, const char *message)
 {
-	dprintf(2, "%s\n", message);
+	dprintf(STDERR_FILENO, "%s\n", message);
 	exit(exit_code);
 }
 
