@@ -21,18 +21,17 @@ void print_error_and_exit(int exit_code, const char *message)
 void copy_file(const char *file_from, const char *file_to)
 {
 	int file_from_fd = open(file_from, O_RDONLY);
+	int permissions = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	int file_to_fd = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, permissions);
+	char buffer[BUFFER_SIZE];
+	ssize_t bytes_read, bytes_written;
 
 	if (file_from_fd == -1)
 		print_error_and_exit(98, "Error: Can't read from file");
 
-	int permissions = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	int file_to_fd = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, permissions);
 
 	if (file_to_fd == -1)
 		print_error_and_exit(99, "Error: Can't write to file");
-
-	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read, bytes_written;
 
 	while ((bytes_read = read(file_from_fd, buffer, sizeof(buffer))) > 0)
 	{
