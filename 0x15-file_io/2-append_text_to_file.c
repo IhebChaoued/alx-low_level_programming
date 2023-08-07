@@ -20,7 +20,7 @@ int append_text_to_file(const char *filename, char *text_content)
 
 	if (!text_content)
 	{
-		close(fd);
+		close(o);
 		return (1);
 	}
 
@@ -28,7 +28,7 @@ int append_text_to_file(const char *filename, char *text_content)
 	while (text_content[len])
 		len++;
 
-	bytes = write(fd, text_content, len);
+	bytes = write(o, text_content, len);
 	close(o);
 
 	if (bytes == len)
