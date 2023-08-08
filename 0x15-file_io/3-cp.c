@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	if (file_to_fd == -1)
 		dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]), exit(99);
 
-	while (bytes_read = read(file_from_fd, buffer, BUFFER_SIZE) > 0)
+	while ((bytes_read = read(file_from_fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		bytes_written = write(file_to_fd, buffer, bytes_read);
 		if (bytes_written != bytes_read)
