@@ -66,7 +66,7 @@ void copy_file(const char *file_from, const char *file_to)
 int main(int argc, char *argv[])
 {
 	if (argc != 3)
-		print_error_and_exit(97, "Usage: cp file_from file_to");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
 
 	copy_file(argv[1], argv[2]);
 
