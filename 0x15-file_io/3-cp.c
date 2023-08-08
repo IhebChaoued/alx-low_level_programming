@@ -1,6 +1,18 @@
 #include "main.h"
 
 /**
+ * print_error_and_exit - Print error message and exit with the given code.
+ *
+ * @exit_code: The exit code to use when terminating the program.
+ * @message: The error message to be printed.
+ */
+void print_error_and_exit(int exit_code, const char *message)
+{
+	dprintf(STDERR_FILENO, "%s\n", message);
+	exit(exit_code);
+}
+
+/**
  * copy_file - Copy content from file_from to file_to.
  *
  * @file_from: The source file path.
