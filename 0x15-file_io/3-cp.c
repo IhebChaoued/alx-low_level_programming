@@ -27,8 +27,8 @@ void copy_file(const char *file_from, const char *file_to)
 	ssize_t bytes_read, bytes_written;
 
 	if (file_from_fd == -1)
-		print_error_and_exit(98, "Error: Can't read from file");
-
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from),
+			    exit(98);
 
 	if (file_to_fd == -1)
 		print_error_and_exit(99, "Error: Can't write to file");
