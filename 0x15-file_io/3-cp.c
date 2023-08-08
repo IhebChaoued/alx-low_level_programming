@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * print_error_and_exit - Print an error message and exit the program.
+ * print_error_and_exit - Print error message and exit with the given code.
  *
- * @exit_code: The exit code to be used when exiting.
+ * @exit_code: The exit code to use when terminating the program.
  * @message: The error message to be printed.
  */
 void print_error_and_exit(int exit_code, const char *message)
@@ -27,26 +27,27 @@ void copy_file(const char *file_from, const char *file_to)
 	ssize_t bytes_read, bytes_written;
 
 	if (file_from_fd == -1)
-		dprintf(STDERR_FILENO, ERR_NOREAD), exit(98);
+		print_error_and_exit(98, "Error: Can't read from file");
+
 
 	if (file_to_fd == -1)
-		dprintf(STDERR_FILENO, ERR_NOWRITE), exit(99);
+		print_error_and_exit(99, "Error: Can't write to file");
 
-	while ((bytes_read = read(file_from_fd, buffer, BUFFER_SIZE)) > 0)
+	while ((bytes_read = read(file_from_fd, buffer, sizeof(buffer))) > 0)
 	{
 		bytes_written = write(file_to_fd, buffer, bytes_read);
 		if (bytes_written != bytes_read)
-			dprintf(STDERR_FILENO, ERR_NOWRITE), exit(99);
+			print_error_and_exit(99, "Error: Can't write to file");
 	}
 
 	if (bytes_read == -1)
-		dprintf(STDERR_FILENO, ERR_NOREAD), exit(98);
+		print_error_and_exit(98, "Error: Can't read from file");
 
 	if (close(file_from_fd) == -1)
-		dprintf(STDERR_FILENO, ERR_NOCLOSE), exit(100);
+		print_error_and_exit(100, "Error: Can't close file descriptor");
 
 	if (close(file_to_fd) == -1)
-		dprintf(STDERR_FILENO, ERR_NOCLOSE), exit(100);
+		print_error_and_exit(100, "Error: Can't close file descriptor");
 }
 
 /**
@@ -55,12 +56,12 @@ void copy_file(const char *file_from, const char *file_to)
  * @argc: The number of command-line arguments.
  * @argv: An array of strings containing the command-line arguments.
  *
- * Return: (0) on success, (exit code) on failure.
+ * Return: (0) on success, other values on failure.
  */
 int main(int argc, char *argv[])
 {
 	if (argc != 3)
-		dprintf(STDERR_FILENO, USAGE), exit(97);
+		print_error_and_exit(97, "Usage: cp file_from file_to");
 
 	copy_file(argv[1], argv[2]);
 
