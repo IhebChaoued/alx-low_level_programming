@@ -31,14 +31,14 @@ void copy_file(const char *file_from, const char *file_to)
 			exit(98);
 
 	if (file_to_fd == -1)
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to),
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to),
 			exit(99);
 
 	while ((bytes_read = read(file_from_fd, buffer, sizeof(buffer))) > 0)
 	{
 		bytes_written = write(file_to_fd, buffer, bytes_read);
 		if (bytes_written != bytes_read)
-			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to),
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to),
 				exit(99);
 	}
 
