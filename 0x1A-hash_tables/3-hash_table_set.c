@@ -1,59 +1,78 @@
 #include "hash_tables.h"
 
+
 /**
- * hash_table_set - Adds an element to the hash table.
- * @ht: The hash table to add or update the key/value to.
- * @key: The key. It cannot be an empty string.
- * @value: The value associated with the key. It must be duplicated.
+ * hash_table_set - Add a key-value pair to the hash table
+ * @ht: The hash table
+ * @key: The key to add or update
+ * @value: The value to associate with the key
  *
- * Return: 1 if it succeeded, 0 otherwise.
+ * Return: 1 on success, 0 on failure.
  */
+
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *new_node, *current;
+	hash_node_t *hash_n, *temp;
+	char *new_val;
 
-	if (ht == NULL || key == NULL || *key == '\0')
+	if (key == NULL || strlen(key) == 0 || value == NULL ||
+			ht == NULL || ht->array == NULL || ht->size == 0)
 		return (0);
-
 	index = key_index((const unsigned char *)key, ht->size);
+	temp = ht->array[index];
 
-	current = ht->array[index];
-
-	while (current)
+	while (temp != NULL)
 	{
-		if (strcmp(current->key, key) == 0)
+		if (strcmp(temp->key, key) == 0)
 		{
-			free(current->value);
-			current->value = strdup(value);
-			if (current->value == NULL)
+			new_val = strdup(value);
+			if (new_val == NULL)
 				return (0);
+			free(temp->value);
+			temp->value = new_val;
 			return (1);
 		}
-		current = current->next;
+		temp = temp->next;
 	}
 
-	new_node = malloc(sizeof(hash_node_t));
-	if (new_node == NULL)
-		return (0);
+	hash_n = new_node(key, value);
 
-	new_node->key = strdup(key);
-	if (new_node->key == NULL)
-	{
-		free(new_node);
-		return (0);
-	}
-
-	new_node->value = strdup(value);
-	if (new_node->value == NULL)
-	{
-		free(new_node->key);
-		free(new_node);
-		return (0);
-	}
-
-	new_node->next = ht->array[index];
-	ht->array[index] = new_node;
-
+	hash_n->next = ht->array[index];
+	ht->array[index] = hash_n;
 	return (1);
+}
+
+/**
+ * new_node - Create a new hash node with the given key and value
+ * @key: The key to add
+ * @value: The value to associate with the key
+ *
+ * Return: A pointer to the newly created hash node, or NULL on failure.
+ */
+
+hash_node_t *new_node(const char *key, const char *value)
+{
+	hash_node_t *hash_n;
+
+	hash_n = malloc(sizeof(hash_node_t));
+	if (!hash_n)
+		return (NULL);
+
+	hash_n->key = strdup(key);
+	if (!hash_n->key)
+	{
+		free(hash_n);
+		return (NULL);
+	}
+
+	hash_n->value = strdup(value);
+	if (!hash_n->value)
+	{
+		free(hash_n->key);
+		free(hash_n);
+		return (NULL);
+	}
+
+	return (hash_n);
 }
