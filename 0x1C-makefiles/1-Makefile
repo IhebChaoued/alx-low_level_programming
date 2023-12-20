@@ -1,7 +1,7 @@
 # Makefile for building the "school" executable
 
-CC := gcc
-SRC := main.c school.c
+CC = gcc
+SRC = main.c school.c
 
 school: $(SRC)
 	$(CC) $(SRC) -o school
