@@ -13,11 +13,9 @@ void print_array(int *array, size_t left, size_t right);
 /* Function prototypes for advanced search algorithms */
 int jump_search(int *array, size_t size, int value);
 int interpolation_search(int *array, size_t size, int value);
-
 int exponential_search(int *array, size_t size, int value);
 int binary_search(int *array, size_t low, size_t high, int value);
 void print_subarray(int *array, size_t low, size_t high);
-
 int advanced_binary(int *array, size_t size, int value);
 
 /* Data structure definition for Jump Search in a singly linked list */
@@ -37,10 +35,8 @@ typedef struct skiplist_s
     struct skiplist_s *express;
 } skiplist_t;
 
-/* Function prototype for Jump Search in a singly linked list */
+/* Function prototypes for advanced search in linked list and skip list */
 listint_t *jump_list(listint_t *list, size_t size, int value);
-
-/* Function prototype for Linear Search in a skip list */
 skiplist_t *linear_skip(skiplist_t *list, int value);
 
 #endif /* SEARCH_ALGOS_H */
